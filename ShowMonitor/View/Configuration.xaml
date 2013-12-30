@@ -1,0 +1,27 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Properties="clr-namespace:ShowMonitor.Properties" x:Class="ShowMonitor.View.ConfigurationView" 
+             mc:Ignorable="d" 
+             d:DesignHeight="460" d:DesignWidth="709"
+             xmlns:properties="clr-namespace:ShowMonitor.Properties">
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="160" Margin="56,63,0,0" VerticalAlignment="Top" Width="597"/>
+        <Label Content="Host:" HorizontalAlignment="Left" Margin="56,75,0,0" VerticalAlignment="Top" Width="98"/>
+        <TextBox DataContext="Properties" HorizontalAlignment="Left" Height="22" Margin="175,79,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=Host}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="56,127,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="176,129,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=Username}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="56,173,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="176,176,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=Password}" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Save Settings" Command="{Binding Path=SaveSettingsCommand}" HorizontalAlignment="Left" Margin="301,428,0,0" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.501,-0.868"/>
+        <Button Content="Test Connection" HorizontalAlignment="Left" Margin="437,85,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label Content="Database Settings" HorizontalAlignment="Left" Margin="56,32,0,0" VerticalAlignment="Top"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="145" Margin="56,268,0,0" VerticalAlignment="Top" Width="597"/>
+        <Label Content="Torrent Settings" HorizontalAlignment="Left" Margin="56,237,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.198,0.124"/>
+        <Label Content="Torrent Directory" HorizontalAlignment="Left" Margin="56,289,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="torrentDirectory" HorizontalAlignment="Left" Height="33" Margin="191,292,0,0" Content="{Binding Source={x:Static properties:Settings.Default}, Mode=TwoWay, Path=TorrentFolder, FallbackValue=Not Configured}" VerticalAlignment="Top" Width="214"/>
+        <Button Content="Change Directory" HorizontalAlignment="Left" Margin="437,292,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click"/>
+    </Grid>
+</UserControl>

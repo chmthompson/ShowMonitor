@@ -1,0 +1,39 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModels="clr-namespace:ShowMonitor.ViewModel"
+             x:Class="ShowMonitor.View.ShowSubscriptionsView"
+             mc:Ignorable="d" 
+             d:DesignHeight="460" d:DesignWidth="709">
+    <Grid HorizontalAlignment="Right" Height="460" VerticalAlignment="Top" Width="709">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="620*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="SubscribedShows" ItemsSource="{Binding Path=SubscribedShowList}" SelectedItem="{Binding Path=SelectedSubscribedShowItem}" Margin="78,59,53,70" AutoGenerateColumns="False" Foreground="White" RowBackground="#FF3C3939" Background="#FF3C3939" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Show Name" Binding="{Binding Path=ShowName}" Width="175"/>
+                <DataGridTextColumn Header="Season" Binding="{Binding Path=Season}" Width="70"/>
+                <DataGridTextColumn Header="Episode" Binding="{Binding Path=Episode}" Width="70"/>
+                <DataGridTextColumn Header="Quality" Binding="{Binding Path=Quality}" Width="100"/>
+                <DataGridTextColumn Header="Last Updated" Binding="{Binding Path=LastUpdated}" Width="*"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu Name="TrackedMenus" StaysOpen="True">
+                    <MenuItem Header="_Remove Show" Command="{Binding Path=RemoveShowCommand}"/>
+                    <MenuItem Header="_Edit Show" Command="{Binding Path=EditShowCommand}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridRowHeader}">
+                    <Setter Property="Background" Value="#FF3C3939"/>
+                </Style>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#FF3C3939"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+        <Label Content="Tracked Shows" HorizontalAlignment="Left" Margin="315,10,0,0" VerticalAlignment="Top" Width="105"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,40 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModels="clr-namespace:ShowMonitor.ViewModel"
+             x:Class="ShowMonitor.View.SearchShowsView"
+             mc:Ignorable="d" 
+             d:DesignHeight="460" d:DesignWidth="709">
+    <Grid HorizontalAlignment="Right" Height="460" VerticalAlignment="Top" Width="709">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="620*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="SearchTextBox" Margin="247,14,284,422" Text="{Binding Path=SearchForShow, Mode=TwoWay}"/>
+        <Button x:Name="SearchButton" Content="Search" Command="{Binding Path=SearchShowCommand}" Margin="561,12,58,423"/>
+        <Label x:Name="SearchSeriesNameLabel" Content="Series Name:" Margin="70,11,467,422"/>
+        <DataGrid x:Name="showResults" Margin="73,54,58,47" ItemsSource="{Binding Path=SearchShowResults}" SelectedItem="{Binding Path=SelectedSearchResultItem, Mode=TwoWay}" AutoGenerateColumns="False" Foreground="White" RowBackground="#FF3C3939" Background="#FF3C3939" CanUserAddRows="False">
+            <DataGrid.ContextMenu>
+                <ContextMenu Name="SearchMenus" StaysOpen="True">
+                    <MenuItem Header="Subscribed to Show" Command="{Binding Path=AddShowCommand}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Show Name" Binding="{Binding Path=ShowName}" Width="175"/>
+                <DataGridTextColumn Header="Season" Binding="{Binding Path=Season}" Width="70"/>
+                <DataGridTextColumn Header="Episode" Binding="{Binding Path=Episode}" Width="70"/>
+                <DataGridTextColumn Header="Quality" Binding="{Binding Path=Quality}" Width="100"/>
+                <DataGridTextColumn Header="Published Dated" Binding="{Binding Path=EpisodeDate}" Width="*"/>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridRowHeader}">
+                    <Setter Property="Background" Value="#FF3C3939" />
+                </Style>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#FF3C3939" />
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+    </Grid>
+</UserControl>
